@@ -1,0 +1,57 @@
+Conceptual Problem!
+
+1. Jelaskan latar belakang adanya bagging dan cara kerja bagging !
+
+    Latar belakang:
+    Bagging (Bootstrap Aggregating) dikembangkan untuk mengurangi variansi dari model prediktif, 
+    terutama model yang cenderung overfitting seperti Decision Tree. Ketika model terlalu sensitif terhadap data latih, 
+    hasil prediksi bisa tidak stabil pada data baru.
+
+    Cara kerja:
+    Bagging bekerja dengan:
+
+    Membuat beberapa subset data latih secara acak (dengan pengembalian) menggunakan teknik bootstrap.
+
+    Melatih model yang sama (misalnya Decision Tree) pada tiap subset tersebut secara terpisah.
+
+        Menggabungkan hasil prediksi dari semua model:
+
+            Untuk klasifikasi → digunakan voting mayoritas
+
+            Untuk regresi → digunakan rata-rata
+
+    Hasil akhirnya adalah model ensemble yang lebih stabil dan generalis dibanding model tunggal.
+
+2. Jelaskan perbedaan cara kerja algoritma Random Forest dengan algoritma boosting yang Anda pilih !
+
+    Random Forest, sebagai bagian dari teknik bagging, bekerja dengan membangun banyak pohon keputusan (decision tree) secara paralel. 
+    Setiap pohon dilatih menggunakan subset acak dari data dan fitur yang berbeda. Hasil prediksi akhir ditentukan melalui proses voting 
+    mayoritas (untuk klasifikasi) atau rata-rata (untuk regresi) dari seluruh pohon yang dibentuk. Pendekatan ini bertujuan untuk mengurangi 
+    variansi model dan meningkatkan kestabilan prediksi dengan menggabungkan banyak model lemah secara independen.
+
+    Di sisi lain, Gradient Boosting termasuk dalam metode boosting yang membangun model secara berurutan. 
+    Setiap pohon berikutnya dilatih untuk memperbaiki kesalahan yang dibuat oleh pohon sebelumnya. Model ini secara eksplisit memfokuskan 
+    pembelajaran pada data yang sebelumnya salah diprediksi, sehingga bobot atau kontribusi pada kesalahan tersebut menjadi lebih besar. 
+    Tujuan dari pendekatan ini adalah untuk mengurangi bias dan meningkatkan akurasi, dengan menggabungkan banyak model lemah yang saling 
+    memperbaiki.
+
+    Dengan demikian, perbedaan utama antara keduanya terletak pada cara kerja dan fokus pendekatannya: 
+    Random Forest bekerja paralel dan fokus pada pengurangan variansi, 
+    sedangkan Gradient Boosting bekerja secara berurutan dan fokus pada pengurangan bias.
+
+3. Jelaskan apa yang dimaksud dengan Cross Validation !
+    Cross Validation (CV) adalah teknik evaluasi model yang membagi data latih menjadi beberapa subset (fold), lalu melatih dan menguji model beberapa kali pada kombinasi berbeda dari subset tersebut.
+
+    Contohnya:
+
+    Pada 5-Fold Cross Validation, data dibagi menjadi 5 bagian:
+
+        - Model dilatih pada 4 bagian dan diuji pada 1 bagian (diulang 5 kali dengan bagian test yang berganti).
+
+        - Hasil evaluasi dirata-ratakan untuk mendapatkan skor akhir.
+
+    Tujuan utama CV:
+
+        - Menilai stabilitas dan generalisasi model terhadap data yang tidak terlihat
+
+        - Mencegah overfitting terhadap data latih
